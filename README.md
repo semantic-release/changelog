@@ -44,12 +44,12 @@ Options can be set within the plugin definition in the `semantic-release` config
 
 **When using with the [npm](https://github.com/semantic-release/npm) plugin and/or the [git](https://github.com/semantic-release/git) plugin the `changelog` plugin must be called first in order to create or update the changelog file, so it can be included in the npm package and committed to the Git repository.**
 
-To use with the [npm](https://github.com/semantic-release/npm), [git](https://github.com/semantic-release/git) and [condition-travis](https://github.com/semantic-release/condition-travis) plugins:
+To use with the [npm](https://github.com/semantic-release/npm) and [git](https://github.com/semantic-release/git) plugins:
 
 ```json
 {
   "release": {
-    "verifyConditions": ["@semantic-release/condition-travis", "@semantic-release/changelog", "@semantic-release/npm", "@semantic-release/git"],
+    "verifyConditions": ["@semantic-release/changelog", "@semantic-release/npm", "@semantic-release/git"],
     "publish": ["@semantic-release/changelog", "@semantic-release/npm", "@semantic-release/git"]
   }
 }
