@@ -64,6 +64,9 @@
     ],
     "all": true
   },
+  "peerDependencies": {
+    "semantic-release": ">=11 <14"
+  },
   "prettier": {
     "printWidth": 120,
     "singleQuote": true,
