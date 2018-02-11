@@ -69,13 +69,15 @@ test.serial('Verify only on the fist call', async t => {
 
 test('Throw SemanticReleaseError if publish "changelogFile" option is not a string', async t => {
   const changelogFile = 42;
-  const error = await t.throws(
-    t.context.m.verifyConditions(
-      {},
-      {options: {publish: ['@semantic-release/git', {path: '@semantic-release/changelog', changelogFile}]}}
-    )
-  );
+  const errors = [
+    ...(await t.throws(
+      t.context.m.verifyConditions(
+        {},
+        {options: {publish: ['@semantic-release/git', {path: '@semantic-release/changelog', changelogFile}]}}
+      )
+    )),
+  ];
 
-  t.is(error.name, 'SemanticReleaseError');
-  t.is(error.code, 'EINVALIDCHANGELOGFILE');
+  t.is(errors[0].name, 'SemanticReleaseError');
+  t.is(errors[0].code, 'EINVALIDCHANGELOGFILE');
 });
