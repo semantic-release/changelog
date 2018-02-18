@@ -34,7 +34,7 @@ test.serial('Create new CHANGELOG.md', async t => {
   const changelogFile = 'docs/changelog.txt';
   const notes = 'Test release note';
 
-  await t.context.m.publish({changelogFile}, {nextRelease: {notes}, logger: t.context.logger});
+  await t.context.m.prepare({changelogFile}, {nextRelease: {notes}, logger: t.context.logger});
 
   // Verify the content of the CHANGELOG.md
   t.is((await readFile(changelogFile)).toString(), `${notes}\n`);
@@ -45,7 +45,7 @@ test.serial('Create new CHANGELOG.md', async t => {
 test.serial('Skip changelog update is the release is empty', async t => {
   await outputFile('CHANGELOG.md', 'Initial CHANGELOG');
 
-  await t.context.m.publish({}, {nextRelease: {}, options: {}, logger: t.context.logger});
+  await t.context.m.prepare({}, {nextRelease: {}, options: {}, logger: t.context.logger});
 
   // Verify the content of the CHANGELOG.md
   t.is((await readFile('CHANGELOG.md')).toString(), 'Initial CHANGELOG');
@@ -57,9 +57,9 @@ test.serial('Verify only on the fist call', async t => {
 
   await t.context.m.verifyConditions(
     {changelogFile},
-    {nextRelease: {notes}, options: {publish: ['@semantic-release/git']}}
+    {nextRelease: {notes}, options: {prepare: ['@semantic-release/git']}}
   );
-  await t.context.m.publish({changelogFile}, {nextRelease: {notes}, logger: t.context.logger});
+  await t.context.m.prepare({changelogFile}, {nextRelease: {notes}, logger: t.context.logger});
 
   // Verify the content of the CHANGELOG.md
   t.is((await readFile(changelogFile)).toString(), `${notes}\n`);
@@ -67,13 +67,13 @@ test.serial('Verify only on the fist call', async t => {
   t.deepEqual(t.context.log.args[0], ['Create %s', changelogFile]);
 });
 
-test('Throw SemanticReleaseError if publish "changelogFile" option is not a string', async t => {
+test('Throw SemanticReleaseError if prepare "changelogFile" option is not a string', async t => {
   const changelogFile = 42;
   const errors = [
     ...(await t.throws(
       t.context.m.verifyConditions(
         {},
-        {options: {publish: ['@semantic-release/git', {path: '@semantic-release/changelog', changelogFile}]}}
+        {options: {prepare: ['@semantic-release/git', {path: '@semantic-release/changelog', changelogFile}]}}
       )
     )),
   ];
