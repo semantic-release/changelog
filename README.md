@@ -13,7 +13,7 @@ Set of [semantic-release](https://github.com/semantic-release/semantic-release) 
 
 Verify the `changelogFile` option configuration.
 
-## publish
+## prepare
 
 Create or update the changelog file in the local project repository.
 
@@ -32,7 +32,7 @@ Options can be set within the plugin definition in the `semantic-release` config
 ```json
 {
   "release": {
-    "publish": [
+    "prepare": [
       {
         "path": "@semantic-release/changelog",
         "changelogFile": "docs/changelog.md",
@@ -53,7 +53,7 @@ To use with the [npm](https://github.com/semantic-release/npm) and [git](https:/
 {
   "release": {
     "verifyConditions": ["@semantic-release/changelog", "@semantic-release/npm", "@semantic-release/git"],
-    "publish": ["@semantic-release/changelog", "@semantic-release/npm", "@semantic-release/git"]
+    "prepare": ["@semantic-release/changelog", "@semantic-release/npm", "@semantic-release/git"]
   }
 }
 ```

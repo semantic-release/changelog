@@ -2,7 +2,7 @@ import test from 'ava';
 import {outputFile, readFile} from 'fs-extra';
 import {stub} from 'sinon';
 import tempy from 'tempy';
-import publish from '../lib/publish';
+import prepare from '../lib/prepare';
 
 // Save the current working diretory
 const cwd = process.cwd();
@@ -23,7 +23,7 @@ test.afterEach.always(() => {
 test.serial('Create new CHANGELOG.md', async t => {
   const notes = 'Test release note';
 
-  await publish({}, notes, t.context.logger);
+  await prepare({}, notes, t.context.logger);
 
   // Verify the content of the CHANGELOG.md
   t.is((await readFile('CHANGELOG.md')).toString(), `${notes}\n`);
@@ -35,7 +35,7 @@ test.serial('Create new changelog with custom path', async t => {
   const notes = 'Test release note';
   const changelogFile = 'docs/changelog.txt';
 
-  await publish({changelogFile}, notes, t.context.logger);
+  await prepare({changelogFile}, notes, t.context.logger);
 
   // Verify the content of the CHANGELOG.md
   t.is((await readFile(changelogFile)).toString(), `${notes}\n`);
@@ -47,7 +47,7 @@ test.serial('Prepend the CHANGELOG.md if there is an existing one', async t => {
   const notes = 'Test release note';
   await outputFile('CHANGELOG.md', 'Initial CHANGELOG');
 
-  await publish({}, notes, t.context.logger);
+  await prepare({}, notes, t.context.logger);
 
   // Verify the content of the CHANGELOG.md
   t.is((await readFile('CHANGELOG.md')).toString(), `${notes}\n\nInitial CHANGELOG\n`);
