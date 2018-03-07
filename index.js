@@ -1,4 +1,4 @@
-const {castArray} = require('lodash');
+const {defaultTo, castArray} = require('lodash');
 const verifyChangelog = require('./lib/verify');
 const prepareChangelog = require('./lib/prepare');
 
@@ -10,7 +10,7 @@ async function verifyConditions(pluginConfig, {options}) {
     const preparePlugin =
       castArray(options.prepare).find(config => config.path && config.path === '@semantic-release/changelog') || {};
 
-    pluginConfig.changelogFile = pluginConfig.changelogFile || preparePlugin.changelogFile;
+    pluginConfig.changelogFile = defaultTo(pluginConfig.changelogFile, preparePlugin.changelogFile);
   }
   await verifyChangelog(pluginConfig);
   verified = true;
