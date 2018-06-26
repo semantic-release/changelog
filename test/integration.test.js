@@ -42,7 +42,7 @@ test.serial('Create new CHANGELOG.md', async t => {
   t.deepEqual(t.context.log.args[0], ['Create %s', changelogFile]);
 });
 
-test.serial('Skip changelog update is the release is empty', async t => {
+test.serial('Skip changelog update if the release is empty', async t => {
   await outputFile('CHANGELOG.md', 'Initial CHANGELOG');
 
   await t.context.m.prepare({}, {nextRelease: {}, options: {}, logger: t.context.logger});
