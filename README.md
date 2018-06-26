@@ -21,9 +21,11 @@ Create or update the changelog file in the local project repository.
 
 ### Options
 
-| Options         | Description                 | Default        |
-|-----------------|-----------------------------|----------------|
-| `changelogFile` | File path of the changelog. | `CHANGELOG.md` |
+| Options          | Description                 | Default        |
+|------------------|-----------------------------|----------------|
+| `changelogFile`  | File path of the changelog. | `CHANGELOG.md` |
+| `changelogTitle` | Title in the changelog.     | None           |
+
 
 ### Usage
 

@@ -53,3 +53,33 @@ test.serial('Prepend the CHANGELOG.md if there is an existing one', async t => {
   t.is((await readFile('CHANGELOG.md')).toString(), `${notes}\n\nInitial CHANGELOG\n`);
   t.deepEqual(t.context.log.args[0], ['Update %s', 'CHANGELOG.md']);
 });
+
+test.serial('Prepend title in the CHANGELOG.md if there is none', async t => {
+  const notes = 'Test release note';
+  await outputFile('CHANGELOG.md', 'Initial CHANGELOG');
+
+  const changelogTitle = '# My Changelog Title';
+  await prepare({changelogTitle}, notes, t.context.logger);
+
+  t.is((await readFile('CHANGELOG.md')).toString(), `${changelogTitle}\n\n${notes}\n\nInitial CHANGELOG\n`);
+});
+
+test.serial('Keep the title at the top of the CHANGELOG.md', async t => {
+  const notes = 'Test release note';
+  const changelogTitle = '# My Changelog Title';
+  await outputFile('CHANGELOG.md', `${changelogTitle}\n\nInitial CHANGELOG`);
+
+  await prepare({changelogTitle}, notes, t.context.logger);
+
+  t.is((await readFile('CHANGELOG.md')).toString(), `${changelogTitle}\n\n${notes}\n\nInitial CHANGELOG\n`);
+});
+
+test.serial('Create new changelog with title if specified', async t => {
+  const notes = 'Test release note';
+  const changelogTitle = '# My Changelog Title';
+  const changelogFile = 'HISTORY.md';
+
+  await prepare({changelogTitle, changelogFile}, notes, t.context.logger);
+
+  t.is((await readFile(changelogFile)).toString(), `${changelogTitle}\n\n${notes}\n`);
+});

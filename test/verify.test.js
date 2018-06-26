@@ -1,12 +1,13 @@
 import test from 'ava';
 import verify from '../lib/verify';
 
-test.serial('Verify String "changelogFile"', t => {
+test.serial('Verify String "changelogFile" and "chagngelogTitle"', t => {
   const changelogFile = 'docs/changelog.txt';
-  t.notThrows(() => verify({changelogFile}));
+  const changelogTitle = '# My title here';
+  t.notThrows(() => verify({changelogFile, changelogTitle}));
 });
 
-test.serial('Verify undefined "changelogFile"', t => {
+test.serial('Verify undefined "changelogFile" and "chagngelogTitle"', t => {
   t.notThrows(() => verify({}));
 });
 
@@ -32,4 +33,27 @@ test('Throw SemanticReleaseError if "changelogFile" option is a whitespace Strin
 
   t.is(error.name, 'SemanticReleaseError');
   t.is(error.code, 'EINVALIDCHANGELOGFILE');
+});
+
+test('Throw SemanticReleaseError if "changelogTitle" option is not a String', t => {
+  const changelogTitle = 42;
+  const [error] = t.throws(() => verify({changelogTitle}));
+
+  t.is(error.name, 'SemanticReleaseError');
+  t.is(error.code, 'EINVALIDCHANGELOGTITLE');
+});
+
+test('Throw SemanticReleaseError if "changelogTitle" option is an empty String', t => {
+  const [error] = t.throws(() => verify({changelogTitle: ''}));
+
+  t.is(error.name, 'SemanticReleaseError');
+  t.is(error.code, 'EINVALIDCHANGELOGTITLE');
+});
+
+test('Throw SemanticReleaseError if "changelogTitle" option is a whitespace String', t => {
+  const changelogTitle = '  \n \r ';
+  const [error] = t.throws(() => verify({changelogTitle}));
+
+  t.is(error.name, 'SemanticReleaseError');
+  t.is(error.code, 'EINVALIDCHANGELOGTITLE');
 });
