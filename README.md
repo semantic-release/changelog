@@ -26,6 +26,7 @@ Create or update the changelog file in the local project repository.
 | `changelogFile`  | File path of the changelog. | `CHANGELOG.md` |
 | `changelogTitle` | Title in the changelog.     | None           |
 
+**Note**: If you use a [shareable configuration](https://github.com/semantic-release/semantic-release/blob/caribou/docs/usage/shareable-configurations.md#shareable-configurations) that defines one of these options you can set it to `false` in your [**semantic-release** configuration](https://github.com/semantic-release/semantic-release/blob/caribou/docs/usage/configuration.md#configuration) in order to use the default value.
 
 ### Usage
 
