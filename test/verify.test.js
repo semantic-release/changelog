@@ -1,13 +1,13 @@
 import test from 'ava';
 import verify from '../lib/verify';
 
-test.serial('Verify String "changelogFile" and "chagngelogTitle"', t => {
+test('Verify String "changelogFile" and "chagngelogTitle"', t => {
   const changelogFile = 'docs/changelog.txt';
   const changelogTitle = '# My title here';
   t.notThrows(() => verify({changelogFile, changelogTitle}));
 });
 
-test.serial('Verify undefined "changelogFile" and "chagngelogTitle"', t => {
+test('Verify undefined "changelogFile" and "chagngelogTitle"', t => {
   t.notThrows(() => verify({}));
 });
 
