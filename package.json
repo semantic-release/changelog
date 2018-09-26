@@ -1,6 +1,6 @@
 {
   "name": "@semantic-release/changelog",
-  "description": "Set of semantic-release plugins for creating or updating a changelog file",
+  "description": "semantic-release plugin to create or update a changelog file",
   "version": "0.0.0-development",
   "author": "Pierre Vanduynslager (https://github.com/pvdlg)",
   "bugs": {
