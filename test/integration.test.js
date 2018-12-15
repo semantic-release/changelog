@@ -19,7 +19,7 @@ test.serial('Verify "changelogFile"', async t => {
   const notes = 'Test release note';
   const changelogFile = 'docs/changelog.txt';
 
-  await t.notThrows(t.context.m.verifyConditions({changelogFile}, {cwd, options: {}, nextRelease: {notes}}));
+  await t.notThrowsAsync(t.context.m.verifyConditions({changelogFile}, {cwd, options: {}, nextRelease: {notes}}));
 });
 
 test.serial('Create new CHANGELOG.md', async t => {
@@ -70,7 +70,7 @@ test('Throw SemanticReleaseError if prepare "changelogFile" option is not a stri
   const cwd = tempy.directory();
   const changelogFile = 42;
   const errors = [
-    ...(await t.throws(
+    ...(await t.throwsAsync(
       t.context.m.verifyConditions(
         {},
         {cwd, options: {prepare: ['@semantic-release/git', {path: '@semantic-release/changelog', changelogFile}]}}
