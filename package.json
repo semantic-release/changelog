@@ -19,7 +19,7 @@
     "@semantic-release/error": "^2.1.0",
     "aggregate-error": "^3.0.0",
     "fs-extra": "^8.0.0",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "ava": "^2.0.0",
