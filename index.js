@@ -1,3 +1,5 @@
+/* eslint require-atomic-updates: off */
+
 const {defaultTo, castArray} = require('lodash');
 const verifyChangelog = require('./lib/verify');
 const prepareChangelog = require('./lib/prepare');
