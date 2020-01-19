@@ -1,9 +1,9 @@
-import path from 'path';
-import test from 'ava';
-import {outputFile, readFile} from 'fs-extra';
-import {stub} from 'sinon';
-import tempy from 'tempy';
-import prepare from '../lib/prepare';
+const path = require('path');
+const test = require('ava');
+const {outputFile, readFile} = require('fs-extra');
+const {stub} = require('sinon');
+const tempy = require('tempy');
+const prepare = require('../lib/prepare');
 
 test.beforeEach(t => {
   // Stub the logger

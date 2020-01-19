@@ -1,5 +1,5 @@
-import test from 'ava';
-import verify from '../lib/verify';
+const test = require('ava');
+const verify = require('../lib/verify');
 
 test('Verify String "changelogFile" and "chagngelogTitle"', t => {
   const changelogFile = 'docs/changelog.txt';

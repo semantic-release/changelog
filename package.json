@@ -3,6 +3,11 @@
   "description": "semantic-release plugin to create or update a changelog file",
   "version": "0.0.0-development",
   "author": "Pierre Vanduynslager (https://github.com/pvdlg)",
+  "ava": {
+    "files": [
+      "test/**/*.test.js"
+    ]
+  },
   "bugs": {
     "url": "https://github.com/semantic-release/changelog/issues"
   },
@@ -17,7 +22,7 @@
     "lodash": "^4.17.4"
   },
   "devDependencies": {
-    "ava": "^2.0.0",
+    "ava": "^3.1.0",
     "clear-module": "^4.0.0",
     "codecov": "^3.0.0",
     "nyc": "^15.0.0",
