@@ -1,9 +1,9 @@
-import path from 'path';
-import test from 'ava';
-import {outputFile, readFile} from 'fs-extra';
-import {stub} from 'sinon';
-import clearModule from 'clear-module';
-import tempy from 'tempy';
+const path = require('path');
+const test = require('ava');
+const {outputFile, readFile} = require('fs-extra');
+const {stub} = require('sinon');
+const clearModule = require('clear-module');
+const tempy = require('tempy');
 
 test.beforeEach(t => {
   // Clear npm cache to refresh the module state
