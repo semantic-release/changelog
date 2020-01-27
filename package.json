@@ -26,7 +26,7 @@
     "clear-module": "^4.0.0",
     "codecov": "^3.0.0",
     "nyc": "^15.0.0",
-    "semantic-release": "^16.0.0",
+    "semantic-release": "^17.0.0",
     "sinon": "^8.0.0",
     "tempy": "^0.3.0",
     "xo": "^0.25.0"
@@ -61,7 +61,7 @@
     "all": true
   },
   "peerDependencies": {
-    "semantic-release": ">=15.8.0 <17.0.0"
+    "semantic-release": ">=15.8.0 <18.0.0"
   },
   "prettier": {
     "printWidth": 120,
