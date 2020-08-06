@@ -30,10 +30,10 @@ The plugin can be configured in the [**semantic-release** configuration file](ht
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
     ["@semantic-release/changelog", {
-      "changelogFile": "docs/CHANGELOG.md",
+      "changelogFile": "docs/CHANGELOG.md"
     }],
     ["@semantic-release/git", {
-      "assets": ["docs/CHANGELOG.md"],
+      "assets": ["docs/CHANGELOG.md"]
     }],
   ]
 }
