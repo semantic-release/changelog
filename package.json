@@ -27,6 +27,8 @@
     "codecov": "3.8.2",
     "nyc": "15.1.0",
     "semantic-release": "17.3.9",
+    "@semantic-release/changelog": "file:.",
+    "@semantic-release/git": "^9.0.0",
     "sinon": "9.2.4",
     "tempy": "1.0.0",
     "xo": "0.28.3"
