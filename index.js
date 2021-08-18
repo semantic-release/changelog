@@ -22,7 +22,7 @@ async function verifyConditions(pluginConfig, context) {
 
 async function prepare(pluginConfig, context) {
   if (!verified) {
-    await verifyChangelog(pluginConfig);
+    await verifyChangelog(pluginConfig, context);
     verified = true;
   }
 
