@@ -28,7 +28,10 @@ test.serial('Create new CHANGELOG.md', async t => {
   const changelogFile = 'docs/changelog.txt';
   const changelogPath = path.resolve(cwd, changelogFile);
 
-  await t.context.m.prepare({changelogFile}, {cwd, options: {}, nextRelease: {notes}, logger: t.context.logger});
+  await t.context.m.prepare(
+    {changelogFile},
+    {cwd, options: {}, branch: {name: null}, nextRelease: {notes}, logger: t.context.logger}
+  );
 
   // Verify the content of the CHANGELOG.md
   t.is((await readFile(changelogPath)).toString(), `${notes}\n`);
@@ -42,7 +45,7 @@ test.serial('Skip changelog update if the release is empty', async t => {
   const changelogPath = path.resolve(cwd, changelogFile);
   await outputFile(changelogPath, 'Initial CHANGELOG');
 
-  await t.context.m.prepare({}, {cwd, options: {}, nextRelease: {}, logger: t.context.logger});
+  await t.context.m.prepare({}, {cwd, options: {}, branch: {name: null}, nextRelease: {}, logger: t.context.logger});
 
   // Verify the content of the CHANGELOG.md
   t.is((await readFile(changelogPath)).toString(), 'Initial CHANGELOG');
@@ -58,7 +61,10 @@ test.serial('Verify only on the fist call', async t => {
     {changelogFile},
     {nextRelease: {notes}, options: {prepare: ['@semantic-release/git']}}
   );
-  await t.context.m.prepare({changelogFile}, {cwd, nextRelease: {notes}, logger: t.context.logger});
+  await t.context.m.prepare(
+    {changelogFile},
+    {cwd, branch: {name: null}, nextRelease: {notes}, logger: t.context.logger}
+  );
 
   // Verify the content of the CHANGELOG.md
   t.is((await readFile(changelogPath)).toString(), `${notes}\n`);
