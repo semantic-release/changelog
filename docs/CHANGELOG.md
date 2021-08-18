@@ -1,3 +1,10 @@
+# [5.3.0](https://github.com/newbish/changelog/compare/v5.2.0...v5.3.0) (2021-08-18)
+
+
+### Features
+
+* renable master ([42628c8](https://github.com/newbish/changelog/commit/42628c8eb084c45a87f1530f748c5f2037aee604))
+
 # [5.1.0](https://github.com/newbish/changelog/compare/v5.0.1...v5.1.0) (2021-08-18)
 
 
