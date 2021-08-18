@@ -6,6 +6,7 @@
     [
       "@semantic-release/changelog",
       {
+        "ignoreBranch": "master",
         "changelogFile": "docs/CHANGELOG.md"
       }
     ],
