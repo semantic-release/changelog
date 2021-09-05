@@ -26,7 +26,7 @@
     "clear-module": "4.1.1",
     "codecov": "3.8.3",
     "nyc": "15.1.0",
-    "semantic-release": "17.3.9",
+    "semantic-release": "17.4.7",
     "sinon": "11.1.2",
     "tempy": "1.0.1",
     "xo": "0.28.3"
