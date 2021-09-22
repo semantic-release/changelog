@@ -26,13 +26,13 @@
     "clear-module": "4.1.1",
     "codecov": "3.8.3",
     "nyc": "15.1.0",
-    "semantic-release": "17.4.7",
+    "semantic-release": "18.0.0",
     "sinon": "11.1.2",
     "tempy": "1.0.1",
     "xo": "0.28.3"
   },
   "engines": {
-    "node": ">=10.18"
+    "node": ">=14.17"
   },
   "files": [
     "lib",
@@ -61,7 +61,7 @@
     "all": true
   },
   "peerDependencies": {
-    "semantic-release": ">=15.8.0 <18.0.0"
+    "semantic-release": ">=18.0.0"
   },
   "prettier": {
     "printWidth": 120,
