@@ -52,7 +52,7 @@ With this example, for each release, a `docs/CHANGELOG.md` will be created or up
 | ---------------- | ---------------------------------------------------------- | -------------- |
 | `changelogFile`  | File path of the changelog.                                | `CHANGELOG.md` |
 | `changelogTitle` | Title of the changelog file (first line of the file).      | -              |
-| `branches`       | A array of branches to write a changelog for. (default all) | -              |
+| `branches`       | A array of branches to write a changelog for. | All branches             |
 
 ### Examples
 
