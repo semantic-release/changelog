@@ -29,7 +29,7 @@ The plugin can be configured in the [**semantic-release** configuration file](ht
       "@semantic-release/changelog",
       {
         "changelogFile": "docs/CHANGELOG.md",
-        "ignoreBranch": "next",
+        "branches": ["main"],
       }
     ],
     [
@@ -52,7 +52,7 @@ With this example, for each release, a `docs/CHANGELOG.md` will be created or up
 | ---------------- | ---------------------------------------------------------- | -------------- |
 | `changelogFile`  | File path of the changelog.                                | `CHANGELOG.md` |
 | `changelogTitle` | Title of the changelog file (first line of the file).      | -              |
-| `ignoreBranch`   | A comma delimited list of branches to ignore for changelog | -              |
+| `branches`       | A array of branches to write a changelog for. (default all) | -              |
 
 ### Examples
 
