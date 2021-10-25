@@ -16,7 +16,7 @@
     "Gregor Martynus (https://twitter.com/gr2m)"
   ],
   "dependencies": {
-    "@semantic-release/error": "^2.1.0",
+    "@semantic-release/error": "^3.0.0",
     "aggregate-error": "^3.0.0",
     "fs-extra": "^9.0.0",
     "lodash": "^4.17.4"
