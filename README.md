@@ -7,7 +7,7 @@
 
 | Step               | Description                                                                                                                                                                                           |
 | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `verifyConditions` | Verify the `ignoreBranch`, `changelogFile` and `changelogTitle` options configuration.                                                                                                                                |
+| `verifyConditions` | Verify the `branch`, `changelogFile` and `changelogTitle` options configuration.                                                                                                                                |
 | `prepare`          | Create or update a changelog file in the local project directory with the changelog content created in the [generate notes step](https://github.com/semantic-release/semantic-release#release-steps). |
 
 ## Install
