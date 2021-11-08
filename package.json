@@ -1,7 +1,7 @@
 {
-  "name": "@semantic-release/changelog",
+  "name": "@newbish/changelog",
   "description": "semantic-release plugin to create or update a changelog file",
-  "version": "0.0.0-development",
+  "version": "0.0.1-development",
   "author": "Pierre Vanduynslager (https://github.com/pvdlg)",
   "ava": {
     "files": [
@@ -13,7 +13,8 @@
   },
   "contributors": [
     "Stephan Bönnemann <stephan@boennemann.me> (http://boennemann.me)",
-    "Gregor Martynus (https://twitter.com/gr2m)"
+    "Gregor Martynus (https://twitter.com/gr2m)",
+    "Keith Kikta (https://twitter.com/newbish)"
   ],
   "dependencies": {
     "@semantic-release/error": "^2.1.0",
@@ -42,7 +43,7 @@
     "lib",
     "index.js"
   ],
-  "homepage": "https://github.com/semantic-release/changelog#readme",
+  "homepage": "https://github.com/newbish/changelog/tree/feature/ignore-branch#readme",
   "keywords": [
     "changelog",
     "conventional-changelog",

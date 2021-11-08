@@ -1,4 +1,4 @@
-# @semantic-release/changelog
+# @newbish/changelog
 
 [**semantic-release**](https://github.com/semantic-release/semantic-release) plugin to create or update a changelog file.
 
@@ -13,7 +13,7 @@
 ## Install
 
 ```bash
-$ npm install @semantic-release/changelog -D
+$ npm install @newbish/changelog -D
 ```
 
 ## Usage
@@ -26,7 +26,7 @@ The plugin can be configured in the [**semantic-release** configuration file](ht
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
     [
-      "@semantic-release/changelog",
+      "@newbish/changelog",
       {
         "changelogFile": "docs/CHANGELOG.md",
         "branches": ["main"],
@@ -63,7 +63,7 @@ When used with the [@semantic-release/git](https://github.com/semantic-release/g
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
-    "@semantic-release/changelog",
+    "@newbish/changelog",
     "@semantic-release/npm",
     "@semantic-release/git"
   ]
