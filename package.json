@@ -16,23 +16,23 @@
     "Gregor Martynus (https://twitter.com/gr2m)"
   ],
   "dependencies": {
-    "@semantic-release/error": "^2.1.0",
+    "@semantic-release/error": "^3.0.0",
     "aggregate-error": "^3.0.0",
     "fs-extra": "^9.0.0",
     "lodash": "^4.17.4"
   },
   "devDependencies": {
     "ava": "3.15.0",
-    "clear-module": "4.1.1",
-    "codecov": "3.8.2",
+    "clear-module": "4.1.2",
+    "codecov": "3.8.3",
     "nyc": "15.1.0",
-    "semantic-release": "17.3.9",
-    "sinon": "9.2.4",
+    "semantic-release": "18.0.0",
+    "sinon": "12.0.1",
     "tempy": "1.0.1",
     "xo": "0.28.3"
   },
   "engines": {
-    "node": ">=10.18"
+    "node": ">=14.17"
   },
   "files": [
     "lib",
@@ -61,7 +61,7 @@
     "all": true
   },
   "peerDependencies": {
-    "semantic-release": ">=15.8.0 <18.0.0"
+    "semantic-release": ">=18.0.0"
   },
   "prettier": {
     "printWidth": 120,
