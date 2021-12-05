@@ -1,7 +1,7 @@
 {
   "name": "@newbish/changelog",
   "description": "semantic-release plugin to create or update a changelog file",
-  "version": "0.0.2-development",
+  "version": "0.0.3-development",
   "author": "Pierre Vanduynslager (https://github.com/pvdlg)",
   "ava": {
     "files": [
