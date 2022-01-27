@@ -39,6 +39,21 @@ test('Create new changelog with custom path', async t => {
   t.deepEqual(t.context.log.args[0], ['Create %s', changelogPath]);
 });
 
+test('Create new changelog with templated path', async t => {
+  const cwd = tempy.directory();
+  const notes = 'Test release note';
+  // New file is based on current branch
+  const changelogFile = '${branch.name}.txt';
+  const changelogPath = path.resolve(cwd, 'master.txt');
+
+  await prepare({changelogFile}, {cwd, nextRelease: {notes}, logger: t.context.logger, branch: {name: 'master'}});
+
+  // Verify the content of the CHANGELOG.md
+  t.is((await readFile(changelogPath)).toString(), `${notes}\n`);
+
+  t.deepEqual(t.context.log.args[0], ['Create %s', changelogPath]);
+});
+
 test('Prepend the CHANGELOG.md if there is an existing one', async t => {
   const cwd = tempy.directory();
   const notes = 'Test release note';

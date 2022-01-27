@@ -86,7 +86,8 @@
     "prettier": true,
     "space": true,
     "rules": {
-      "unicorn/string-content": "off"
+      "unicorn/string-content": "off",
+      "no-template-curly-in-string": "off"
     }
   },
   "renovate": {
