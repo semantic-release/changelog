@@ -13,7 +13,8 @@
   },
   "contributors": [
     "Stephan Bönnemann <stephan@boennemann.me> (http://boennemann.me)",
-    "Gregor Martynus (https://twitter.com/gr2m)"
+    "Gregor Martynus (https://twitter.com/gr2m)",
+    "Keith Kikta (https://twitter.com/newbish)"
   ],
   "dependencies": {
     "@semantic-release/error": "^3.0.0",

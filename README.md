@@ -7,7 +7,7 @@
 
 | Step               | Description                                                                                                                                                                                           |
 | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `verifyConditions` | Verify the `branch`, `changelogFile` and `changelogTitle` options configuration.                                                                                                                                |
+| `verifyConditions` | Verify the `branch`, `changelogFile` and `changelogTitle` options configuration.                                                                                                                      |
 | `prepare`          | Create or update a changelog file in the local project directory with the changelog content created in the [generate notes step](https://github.com/semantic-release/semantic-release#release-steps). |
 
 ## Install
@@ -29,7 +29,7 @@ The plugin can be configured in the [**semantic-release** configuration file](ht
       "@semantic-release/changelog",
       {
         "changelogFile": "docs/CHANGELOG.md",
-        "branches": ["main"],
+        "branches": ["main"]
       }
     ],
     [
@@ -48,11 +48,11 @@ With this example, for each release, a `docs/CHANGELOG.md` will be created or up
 
 ### Options
 
-| Options          | Description                                                | Default        |
-| ---------------- | ---------------------------------------------------------- | -------------- |
-| `changelogFile`  | File path of the changelog.                                | `CHANGELOG.md` |
-| `changelogTitle` | Title of the changelog file (first line of the file).      | -              |
-| `branches`       | A array of branches to write a changelog for. | All branches             |
+| Options          | Description                                           | Default        |
+| ---------------- | ----------------------------------------------------- | -------------- |
+| `changelogFile`  | File path of the changelog.                           | `CHANGELOG.md` |
+| `changelogTitle` | Title of the changelog file (first line of the file). | -              |
+| `branches`       | A array of branches to write a changelog for.         | All branches   |
 
 ### Examples
 
