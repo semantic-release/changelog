@@ -71,10 +71,8 @@
     "arrowParens": "avoid",
     "bracketSpacing": false,
     "printWidth": 120,
-    "singleQuote": true,
-    "tabWidth": 2,
     "trailingComma": "es5",
-    "useTabs": false
+    "singleQuote": true
   },
   "publishConfig": {
     "access": "public"
@@ -89,7 +87,8 @@
     "pretest": "npm run lint",
     "semantic-release": "semantic-release",
     "test": "nyc ava -v",
-    "test:ci": "nyc ava -v"
+    "test:ci": "nyc ava -v",
+    "prettier": "npx prettier --write {lib,test}/**/*.js"
   },
   "xo": {
     "prettier": true,
