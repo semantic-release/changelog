@@ -69,7 +69,7 @@
   },
   "prettier": {
     "arrowParens": "avoid",
-    "bracketSpacing": true,
+    "bracketSpacing": false,
     "printWidth": 120,
     "trailingComma": "es5",
     "singleQuote": true
@@ -88,7 +88,7 @@
     "semantic-release": "semantic-release",
     "test": "nyc ava -v",
     "test:ci": "nyc ava -v",
-    "prettier": "npx prettier --write {lib,test}/**/*.js index.js"
+    "prettier": "npx prettier --write \"{*,!(node_modules|coverage)/**/}*.js\""
   },
   "xo": {
     "prettier": true,
