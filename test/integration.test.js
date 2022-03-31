@@ -1,7 +1,7 @@
 const path = require('path');
 const test = require('ava');
-const {outputFile, readFile} = require('fs-extra');
-const {stub} = require('sinon');
+const { outputFile, readFile } = require('fs-extra');
+const { stub } = require('sinon');
 const clearModule = require('clear-module');
 const tempy = require('tempy');
 
@@ -11,7 +11,7 @@ test.beforeEach(t => {
   t.context.m = require('..');
   // Stub the logger
   t.context.log = stub();
-  t.context.logger = {log: t.context.log};
+  t.context.logger = { log: t.context.log };
 });
 
 test.serial('Verify "changelogFile"', async t => {
@@ -19,7 +19,7 @@ test.serial('Verify "changelogFile"', async t => {
   const notes = 'Test release note';
   const changelogFile = 'docs/changelog.txt';
 
-  await t.notThrowsAsync(t.context.m.verifyConditions({changelogFile}, {cwd, options: {}, nextRelease: {notes}}));
+  await t.notThrowsAsync(t.context.m.verifyConditions({ changelogFile }, { cwd, options: {}, nextRelease: { notes } }));
 });
 
 test.serial('Create new CHANGELOG.md', async t => {
@@ -29,8 +29,8 @@ test.serial('Create new CHANGELOG.md', async t => {
   const changelogPath = path.resolve(cwd, changelogFile);
 
   await t.context.m.prepare(
-    {changelogFile},
-    {cwd, options: {}, branch: {name: null}, nextRelease: {notes}, logger: t.context.logger}
+    { changelogFile },
+    { cwd, options: {}, branch: { name: null }, nextRelease: { notes }, logger: t.context.logger }
   );
 
   // Verify the content of the CHANGELOG.md
@@ -45,7 +45,10 @@ test.serial('Skip changelog update if the release is empty', async t => {
   const changelogPath = path.resolve(cwd, changelogFile);
   await outputFile(changelogPath, 'Initial CHANGELOG');
 
-  await t.context.m.prepare({}, {cwd, options: {}, branch: {name: null}, nextRelease: {}, logger: t.context.logger});
+  await t.context.m.prepare(
+    {},
+    { cwd, options: {}, branch: { name: null }, nextRelease: {}, logger: t.context.logger }
+  );
 
   // Verify the content of the CHANGELOG.md
   t.is((await readFile(changelogPath)).toString(), 'Initial CHANGELOG');
@@ -58,12 +61,12 @@ test.serial('Verify only on the fist call', async t => {
   const changelogPath = path.resolve(cwd, changelogFile);
 
   await t.context.m.verifyConditions(
-    {changelogFile},
-    {nextRelease: {notes}, options: {prepare: ['@semantic-release/git']}}
+    { changelogFile },
+    { nextRelease: { notes }, options: { prepare: ['@semantic-release/git'] } }
   );
   await t.context.m.prepare(
-    {changelogFile},
-    {cwd, branch: {name: null}, nextRelease: {notes}, logger: t.context.logger}
+    { changelogFile },
+    { cwd, branch: { name: null }, nextRelease: { notes }, logger: t.context.logger }
   );
 
   // Verify the content of the CHANGELOG.md
@@ -79,7 +82,7 @@ test('Throw SemanticReleaseError if prepare "changelogFile" option is not a stri
     ...(await t.throwsAsync(
       t.context.m.verifyConditions(
         {},
-        {cwd, options: {prepare: ['@semantic-release/git', {path: '@semantic-release/changelog', changelogFile}]}}
+        { cwd, options: { prepare: ['@semantic-release/git', { path: '@semantic-release/changelog', changelogFile }] } }
       )
     )),
   ];

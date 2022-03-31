@@ -1,6 +1,6 @@
 /* eslint require-atomic-updates: off */
 
-const {defaultTo, castArray} = require('lodash');
+const { defaultTo, castArray } = require('lodash');
 const verifyChangelog = require('./lib/verify');
 const prepareChangelog = require('./lib/prepare');
 
@@ -8,7 +8,7 @@ let verified;
 let branches;
 
 async function verifyConditions(pluginConfig, context) {
-  const {options} = context;
+  const { options } = context;
   // If the Changelog prepare plugin is used and has `changelogFile` configured, validate them now in order to prevent any release if the configuration is wrong
   if (options.prepare) {
     const preparePlugin =
@@ -17,6 +17,7 @@ async function verifyConditions(pluginConfig, context) {
     pluginConfig.changelogFile = defaultTo(pluginConfig.changelogFile, preparePlugin.changelogFile);
     pluginConfig.branches = defaultTo(pluginConfig.branches, preparePlugin.branches);
   }
+
   branches = pluginConfig.branches;
 
   await verifyChangelog(pluginConfig);
@@ -24,14 +25,14 @@ async function verifyConditions(pluginConfig, context) {
 }
 
 async function prepare(pluginConfig, context) {
-  const {options} = context;
   if (!verified) {
     await verifyChangelog(pluginConfig, context);
     verified = true;
   }
-  if (!branches || branches.indexOf(context.branch.name) >= 0) {
+
+  if (!branches || branches.includes(context.branch.name) >= 0) {
     await prepareChangelog(pluginConfig, context);
   }
 }
 
-module.exports = {verifyConditions, prepare};
+module.exports = { verifyConditions, prepare };
