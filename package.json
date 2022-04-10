@@ -22,7 +22,7 @@
     "lodash": "^4.17.4"
   },
   "devDependencies": {
-    "ava": "4.1.0",
+    "ava": "4.2.0",
     "clear-module": "4.1.2",
     "codecov": "3.8.3",
     "nyc": "15.1.0",
