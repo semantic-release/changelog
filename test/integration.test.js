@@ -5,7 +5,7 @@ const {stub} = require('sinon');
 const clearModule = require('clear-module');
 const tempy = require('tempy');
 
-test.beforeEach(t => {
+test.beforeEach((t) => {
   // Clear npm cache to refresh the module state
   clearModule('..');
   t.context.m = require('..');
@@ -14,7 +14,7 @@ test.beforeEach(t => {
   t.context.logger = {log: t.context.log};
 });
 
-test.serial('Verify "changelogFile"', async t => {
+test.serial('Verify "changelogFile"', async (t) => {
   const cwd = tempy.directory();
   const notes = 'Test release note';
   const changelogFile = 'docs/changelog.txt';
@@ -22,7 +22,7 @@ test.serial('Verify "changelogFile"', async t => {
   await t.notThrowsAsync(t.context.m.verifyConditions({changelogFile}, {cwd, options: {}, nextRelease: {notes}}));
 });
 
-test.serial('Create new CHANGELOG.md', async t => {
+test.serial('Create new CHANGELOG.md', async (t) => {
   const cwd = tempy.directory();
   const notes = 'Test release note';
   const changelogFile = 'docs/changelog.txt';
@@ -36,7 +36,7 @@ test.serial('Create new CHANGELOG.md', async t => {
   t.deepEqual(t.context.log.args[0], ['Create %s', changelogPath]);
 });
 
-test.serial('Skip changelog update if the release is empty', async t => {
+test.serial('Skip changelog update if the release is empty', async (t) => {
   const cwd = tempy.directory();
   const changelogFile = 'CHANGELOG.txt';
   const changelogPath = path.resolve(cwd, changelogFile);
@@ -48,7 +48,7 @@ test.serial('Skip changelog update if the release is empty', async t => {
   t.is((await readFile(changelogPath)).toString(), 'Initial CHANGELOG');
 });
 
-test.serial('Verify only on the fist call', async t => {
+test.serial('Verify only on the fist call', async (t) => {
   const cwd = tempy.directory();
   const notes = 'Test release note';
   const changelogFile = 'docs/changelog.txt';
@@ -66,7 +66,7 @@ test.serial('Verify only on the fist call', async t => {
   t.deepEqual(t.context.log.args[0], ['Create %s', changelogPath]);
 });
 
-test('Throw SemanticReleaseError if prepare "changelogFile" option is not a string', async t => {
+test('Throw SemanticReleaseError if prepare "changelogFile" option is not a string', async (t) => {
   const cwd = tempy.directory();
   const changelogFile = 42;
   const errors = [

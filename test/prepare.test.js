@@ -3,15 +3,15 @@ const test = require('ava');
 const {outputFile, readFile} = require('fs-extra');
 const {stub} = require('sinon');
 const tempy = require('tempy');
-const prepare = require('../lib/prepare');
+const prepare = require('../lib/prepare.js');
 
-test.beforeEach(t => {
+test.beforeEach((t) => {
   // Stub the logger
   t.context.log = stub();
   t.context.logger = {log: t.context.log};
 });
 
-test('Create new CHANGELOG.md', async t => {
+test('Create new CHANGELOG.md', async (t) => {
   const cwd = tempy.directory();
   const notes = 'Test release note';
   const changelogFile = 'CHANGELOG.md';
@@ -25,7 +25,7 @@ test('Create new CHANGELOG.md', async t => {
   t.deepEqual(t.context.log.args[0], ['Create %s', changelogPath]);
 });
 
-test('Create new changelog with custom path', async t => {
+test('Create new changelog with custom path', async (t) => {
   const cwd = tempy.directory();
   const notes = 'Test release note';
   const changelogFile = 'docs/changelog.txt';
@@ -39,7 +39,7 @@ test('Create new changelog with custom path', async t => {
   t.deepEqual(t.context.log.args[0], ['Create %s', changelogPath]);
 });
 
-test('Prepend the CHANGELOG.md if there is an existing one', async t => {
+test('Prepend the CHANGELOG.md if there is an existing one', async (t) => {
   const cwd = tempy.directory();
   const notes = 'Test release note';
   const changelogFile = 'CHANGELOG.md';
@@ -53,7 +53,7 @@ test('Prepend the CHANGELOG.md if there is an existing one', async t => {
   t.deepEqual(t.context.log.args[0], ['Update %s', changelogPath]);
 });
 
-test('Prepend title in the CHANGELOG.md if there is none', async t => {
+test('Prepend title in the CHANGELOG.md if there is none', async (t) => {
   const cwd = tempy.directory();
   const notes = 'Test release note';
   const changelogTitle = '# My Changelog Title';
@@ -66,7 +66,7 @@ test('Prepend title in the CHANGELOG.md if there is none', async t => {
   t.is((await readFile(changelogPath)).toString(), `${changelogTitle}\n\n${notes}\n\nInitial CHANGELOG\n`);
 });
 
-test('Keep the title at the top of the CHANGELOG.md', async t => {
+test('Keep the title at the top of the CHANGELOG.md', async (t) => {
   const cwd = tempy.directory();
   const notes = 'Test release note';
   const changelogTitle = '# My Changelog Title';
@@ -79,7 +79,7 @@ test('Keep the title at the top of the CHANGELOG.md', async t => {
   t.is((await readFile(changelogPath)).toString(), `${changelogTitle}\n\n${notes}\n\nInitial CHANGELOG\n`);
 });
 
-test.serial('Create new changelog with title if specified', async t => {
+test.serial('Create new changelog with title if specified', async (t) => {
   const cwd = tempy.directory();
   const notes = 'Test release note';
   const changelogTitle = '# My Changelog Title';
