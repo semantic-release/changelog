@@ -86,6 +86,7 @@
     "prettier": true,
     "space": true,
     "rules": {
+      "unicorn/no-array-reduce": "off",
       "unicorn/string-content": "off"
     }
   },
