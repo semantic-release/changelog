@@ -17,7 +17,7 @@
   ],
   "dependencies": {
     "@semantic-release/error": "^3.0.0",
-    "aggregate-error": "^3.0.0",
+    "aggregate-error": "^5.0.0",
     "fs-extra": "^11.0.0",
     "lodash": "^4.17.4"
   },
