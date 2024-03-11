@@ -7,7 +7,7 @@
 
 | Step               | Description                                                                                                                                                                                           |
 | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `verifyConditions` | Verify the `changelogFile` and `changelogTitle` options configuration.                                                                                                                                |
+| `verifyConditions` | Verify the `changelogFile`, `changelogTitle` and `skipOnPrerelease` options configuration.                                                                                                                                |
 | `prepare`          | Create or update a changelog file in the local project directory with the changelog content created in the [generate notes step](https://github.com/semantic-release/semantic-release#release-steps). |
 
 ## Install
@@ -47,10 +47,11 @@ With this example, for each release, a `docs/CHANGELOG.md` will be created or up
 
 ### Options
 
-| Options          | Description                                           | Default        |
-| ---------------- | ----------------------------------------------------- | -------------- |
-| `changelogFile`  | File path of the changelog.                           | `CHANGELOG.md` |
-| `changelogTitle` | Title of the changelog file (first line of the file). | -              |
+| Options            | Description                                              | Default        |
+| ------------------ | -------------------------------------------------------- | -------------- |
+| `changelogFile`    | File path of the changelog.                              | `CHANGELOG.md` |
+| `changelogTitle`   | Title of the changelog file (first line of the file).    | -              |
+| `skipOnPrerelease` | Skip changelog update when branch is a prerelease branch | `false`        |
 
 ### Examples
 
