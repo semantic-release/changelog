@@ -2,6 +2,9 @@
 
 [**semantic-release**](https://github.com/semantic-release/semantic-release) plugin to create or update a changelog file.
 
+> [!WARNING]
+> Please consider whether committing release notes to a file is worth the [added complexity](https://semantic-release.gitbook.io/semantic-release/support/faq#should-release-notes-be-committed-to-a-changelog.md-in-my-repository-during-a-release) compared to other available options for capturing release notes.
+
 [![Build Status](https://github.com/semantic-release/changelog/workflows/Test/badge.svg)](https://github.com/semantic-release/changelog/actions?query=workflow%3ATest+branch%3Amaster) [![npm latest version](https://img.shields.io/npm/v/@semantic-release/changelog/latest.svg)](https://www.npmjs.com/package/@semantic-release/changelog)
 [![npm next version](https://img.shields.io/npm/v/@semantic-release/changelog/next.svg)](https://www.npmjs.com/package/@semantic-release/changelog)
 
@@ -54,7 +57,7 @@ With this example, for each release, a `docs/CHANGELOG.md` will be created or up
 
 ### Examples
 
-When used with the [@semantic-release/git](https://github.com/semantic-release/git) or [@semantic-release/npm](https://github.com/semantic-release/npm) plugins the `@semantic-release/changelog` plugin must be called first in order to update the changelog file so the [@semantic-release/git](https://github.com/semantic-release/git) and [@semantic-release/npm](https://github.com/semantic-release/npm) plugins can include it in the release.
+When used with the [@semantic-release/git](https://github.com/semantic-release/git) or [@semantic-release/npm](https://github.com/semantic-release/npm) plugins the `@semantic-release/changelog` plugin must be called before those plugins in order to update the changelog file so the [@semantic-release/git](https://github.com/semantic-release/git) and [@semantic-release/npm](https://github.com/semantic-release/npm) plugins can include it in the release.
 
 ```json
 {
