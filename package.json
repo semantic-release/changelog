@@ -25,7 +25,7 @@
     "ava": "5.1.0",
     "clear-module": "4.1.2",
     "codecov": "3.8.3",
-    "nyc": "15.1.0",
+    "nyc": "17.0.0",
     "semantic-release": "21.1.2",
     "sinon": "18.0.0",
     "tempy": "1.0.1",
