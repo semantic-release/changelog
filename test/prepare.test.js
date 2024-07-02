@@ -1,6 +1,6 @@
 const path = require('path');
 const test = require('ava');
-const {outputFile, readFile} = require('fs-extra');
+const {outputFile, readFile, pathExists} = require('fs-extra');
 const {stub} = require('sinon');
 const tempy = require('tempy');
 const prepare = require('../lib/prepare.js');
@@ -89,4 +89,77 @@ test.serial('Create new changelog with title if specified', async (t) => {
   await prepare({changelogTitle, changelogFile}, {cwd, nextRelease: {notes}, logger: t.context.logger});
 
   t.is((await readFile(changelogPath)).toString(), `${changelogTitle}\n\n${notes}\n`);
+});
+
+test.serial('Skip creation of changelog if skipOnPrerelease is set on prerelease branches', async (t) => {
+  const cwd = tempy.directory();
+  const notes = 'Test release note';
+  const changelogFile = 'CHANGELOG.md';
+  const changelogPath = path.resolve(cwd, changelogFile);
+
+  await prepare(
+    {skipOnPrerelease: true},
+    {cwd, nextRelease: {notes}, branch: {type: 'prerelease', main: false}, logger: t.context.logger}
+  );
+
+  // Verify the content of the CHANGELOG.md
+  t.is(await pathExists(changelogPath), false);
+  t.deepEqual(t.context.log.args[0], [
+    'Skipping because branch is a prerelease branch and option skipOnPrerelease is active',
+  ]);
+});
+
+test('Skip update of changelog if skipOnPrerelease is set on prerelease branches', async (t) => {
+  const cwd = tempy.directory();
+  const notes = 'Test release note';
+  const changelogFile = 'CHANGELOG.md';
+  const changelogPath = path.resolve(cwd, changelogFile);
+  await outputFile(changelogPath, 'Initial CHANGELOG');
+
+  await prepare(
+    {skipOnPrerelease: true},
+    {cwd, nextRelease: {notes}, branch: {type: 'prerelease', main: false}, logger: t.context.logger}
+  );
+
+  // Verify the content of the CHANGELOG.md
+  t.is((await readFile(changelogPath)).toString(), `Initial CHANGELOG`);
+  t.deepEqual(t.context.log.args[0], [
+    'Skipping because branch is a prerelease branch and option skipOnPrerelease is active',
+  ]);
+});
+
+test('Skip update of changelog if skipOnPrerelease is set on release branches but it is not main', async (t) => {
+  const cwd = tempy.directory();
+  const notes = 'Test release note';
+  const changelogFile = 'CHANGELOG.md';
+  const changelogPath = path.resolve(cwd, changelogFile);
+  await outputFile(changelogPath, 'Initial CHANGELOG');
+
+  await prepare(
+    {skipOnPrerelease: true},
+    {cwd, nextRelease: {notes}, branch: {type: 'release', main: false}, logger: t.context.logger}
+  );
+
+  // Verify the content of the CHANGELOG.md
+  t.is((await readFile(changelogPath)).toString(), `Initial CHANGELOG`);
+  t.deepEqual(t.context.log.args[0], [
+    'Skipping because branch is a prerelease branch and option skipOnPrerelease is active',
+  ]);
+});
+
+test('Ensure update of changelog if skipOnPrerelease is not set on prerelease branches', async (t) => {
+  const cwd = tempy.directory();
+  const notes = 'Test release note';
+  const changelogFile = 'CHANGELOG.md';
+  const changelogPath = path.resolve(cwd, changelogFile);
+  await outputFile(changelogPath, 'Initial CHANGELOG');
+
+  await prepare(
+    {skipOnPrerelease: false},
+    {cwd, nextRelease: {notes}, branch: {type: 'prerelease', main: false}, logger: t.context.logger}
+  );
+
+  // Verify the content of the CHANGELOG.md
+  t.is((await readFile(changelogPath)).toString(), `${notes}\n\nInitial CHANGELOG\n`);
+  t.deepEqual(t.context.log.args[0], ['Update %s', changelogPath]);
 });
