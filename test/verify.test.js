@@ -57,3 +57,11 @@ test('Throw SemanticReleaseError if "changelogTitle" option is a whitespace Stri
   t.is(error.name, 'SemanticReleaseError');
   t.is(error.code, 'EINVALIDCHANGELOGTITLE');
 });
+
+test('Throw SemanticReleaseError if "skipOnPrerelease" option is not a boolean', (t) => {
+  const skipOnPrerelease = 'wrong';
+  const [error] = t.throws(() => verify({skipOnPrerelease}));
+
+  t.is(error.name, 'SemanticReleaseError');
+  t.is(error.code, 'EINVALIDSKIPONPRERELEASE');
+});

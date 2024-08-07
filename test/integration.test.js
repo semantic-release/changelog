@@ -48,6 +48,21 @@ test.serial('Skip changelog update if the release is empty', async (t) => {
   t.is((await readFile(changelogPath)).toString(), 'Initial CHANGELOG');
 });
 
+test.serial('Skip changelog update if the release is a prerelease and skipOnPrerelease option is set', async (t) => {
+  const cwd = tempy.directory();
+  const changelogFile = 'CHANGELOG.txt';
+  const changelogPath = path.resolve(cwd, changelogFile);
+  await outputFile(changelogPath, 'Initial CHANGELOG');
+
+  await t.context.m.prepare(
+    {skipOnPrerelease: true},
+    {cwd, options: {}, nextRelease: {}, logger: t.context.logger, branch: {type: 'prerelease'}}
+  );
+
+  // Verify the content of the CHANGELOG.md
+  t.is((await readFile(changelogPath)).toString(), 'Initial CHANGELOG');
+});
+
 test.serial('Verify only on the fist call', async (t) => {
   const cwd = tempy.directory();
   const notes = 'Test release note';
