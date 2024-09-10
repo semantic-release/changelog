@@ -24,7 +24,6 @@
   "devDependencies": {
     "ava": "5.1.0",
     "clear-module": "4.1.2",
-    "codecov": "3.8.3",
     "nyc": "17.0.0",
     "semantic-release": "21.1.2",
     "sinon": "18.0.0",
@@ -76,7 +75,6 @@
     "url": "https://github.com/semantic-release/changelog.git"
   },
   "scripts": {
-    "codecov": "codecov -f coverage/coverage-final.json",
     "lint": "xo",
     "pretest": "npm run lint",
     "semantic-release": "semantic-release",
