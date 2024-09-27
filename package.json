@@ -16,7 +16,7 @@
     "Gregor Martynus (https://twitter.com/gr2m)"
   ],
   "dependencies": {
-    "@semantic-release/error": "^3.0.0",
+    "@semantic-release/error": "^4.0.0",
     "aggregate-error": "^3.0.0",
     "fs-extra": "^11.0.0",
     "lodash": "^4.17.4"
@@ -25,7 +25,7 @@
     "ava": "5.1.0",
     "clear-module": "4.1.2",
     "nyc": "17.0.0",
-    "semantic-release": "21.1.2",
+    "semantic-release": "24.1.2",
     "sinon": "18.0.0",
     "tempy": "1.0.1",
     "xo": "0.39.1"
