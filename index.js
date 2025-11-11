@@ -16,13 +16,13 @@ async function verifyConditions(pluginConfig, context) {
     pluginConfig.changelogFile = defaultTo(pluginConfig.changelogFile, preparePlugin.changelogFile);
   }
 
-  await verifyChangelog(pluginConfig);
+  await verifyChangelog(pluginConfig, context);
   verified = true;
 }
 
 async function prepare(pluginConfig, context) {
   if (!verified) {
-    await verifyChangelog(pluginConfig);
+    await verifyChangelog(pluginConfig, context);
     verified = true;
   }
 

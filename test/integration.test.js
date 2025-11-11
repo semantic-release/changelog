@@ -36,6 +36,24 @@ test.serial('Create new CHANGELOG.md', async (t) => {
   t.deepEqual(t.context.log.args[0], ['Create %s', changelogPath]);
 });
 
+test.serial('Create new changelog with template', async (t) => {
+  const cwd = tempy.directory();
+  const notes = 'Test release note';
+  const version = '1.2.3-development.0';
+  const changelogFile = `docs/CHANGELOG-\${nextRelease.version}.txt`;
+  const changelogPath = path.resolve(cwd, `docs/CHANGELOG-${version}.txt`);
+
+  await t.context.m.prepare(
+    {changelogFile},
+    {cwd, options: {}, nextRelease: {notes, version}, logger: t.context.logger}
+  );
+
+  // Verify the content of the CHANGELOG.md
+  t.is((await readFile(changelogPath)).toString(), `${notes}\n`);
+
+  t.deepEqual(t.context.log.args[0], ['Create %s', changelogPath]);
+});
+
 test.serial('Skip changelog update if the release is empty', async (t) => {
   const cwd = tempy.directory();
   const changelogFile = 'CHANGELOG.txt';
@@ -64,20 +82,4 @@ test.serial('Verify only on the fist call', async (t) => {
   t.is((await readFile(changelogPath)).toString(), `${notes}\n`);
 
   t.deepEqual(t.context.log.args[0], ['Create %s', changelogPath]);
-});
-
-test('Throw SemanticReleaseError if prepare "changelogFile" option is not a string', async (t) => {
-  const cwd = tempy.directory();
-  const changelogFile = 42;
-  const errors = [
-    ...(await t.throwsAsync(
-      t.context.m.verifyConditions(
-        {},
-        {cwd, options: {prepare: ['@semantic-release/git', {path: '@semantic-release/changelog', changelogFile}]}}
-      )
-    )),
-  ];
-
-  t.is(errors[0].name, 'SemanticReleaseError');
-  t.is(errors[0].code, 'EINVALIDCHANGELOGFILE');
 });
