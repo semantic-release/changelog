@@ -43,4 +43,3 @@ jobs:
       # https://github.com/lirantal/lockfile-lint#readme
       - name: Scan lockfile for security issues
         run: npx lockfile-lint --path package-lock.json
-
