@@ -27,7 +27,7 @@
     "semantic-release": "24.2.1",
     "sinon": "19.0.2",
     "tempy": "3.1.0",
-    "xo": "0.60.0"
+    "prettier": "3.5.3"
   },
   "engines": {
     "node": ">=20.8.1"
@@ -62,18 +62,11 @@
     "url": "https://github.com/semantic-release/changelog.git"
   },
   "scripts": {
-    "lint": "xo",
+    "lint": "prettier --check \"{lib,test}/**/*.{js,json,ts}\" \"*.{js,md,json}\" \".github/**/*.yml\"",
+    "lint:fix": "prettier --write \"{lib,test}/**/*.{js,json,ts}\" \"*.{js,md,json}\" \".github/**/*.yml\"",
     "pretest": "npm run lint",
     "semantic-release": "semantic-release",
     "test": "c8 ava -v"
-  },
-  "xo": {
-    "prettier": true,
-    "space": true,
-    "rules": {
-      "unicorn/no-array-reduce": "off",
-      "unicorn/string-content": "off"
-    }
   },
   "c8": {
     "include": [
