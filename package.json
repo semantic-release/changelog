@@ -30,7 +30,7 @@
     "prettier": "3.5.3"
   },
   "engines": {
-    "node": ">=20.8.1"
+    "node": "^22.14.0 || >= 24.10.0"
   },
   "exports": "./index.js",
   "files": [
