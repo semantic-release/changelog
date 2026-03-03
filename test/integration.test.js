@@ -3,7 +3,7 @@ import test from "ava";
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { stub } from "sinon";
 import { temporaryDirectory } from "tempy";
-import changelogPlugin from "../index.js";
+import { verifyConditions, prepare } from "../index.js";
 
 const outputFile = async (filePath, content) => {
   await mkdir(path.dirname(filePath), { recursive: true });
@@ -12,7 +12,7 @@ const outputFile = async (filePath, content) => {
 
 test.beforeEach((t) => {
   // Create a fresh plugin instance to reset the `verified` state
-  t.context.m = changelogPlugin();
+  t.context.m = { verifyConditions, prepare };
   // Stub the logger
   t.context.log = stub();
   t.context.logger = { log: t.context.log };
