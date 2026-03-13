@@ -41,15 +41,24 @@ jobs:
       - run: npm test
   test:
     runs-on: ubuntu-latest
+    if: ${{ !cancelled() }}
     needs:
       - test_matrix
       - test_dev
     steps:
+      - name: All matrix versions passed
+        if: ${{ !(contains(needs.*.result, 'failure')) }}
+        run: exit 0
+      - name: Some matrix version failed
+        if: ${{ contains(needs.*.result, 'failure') }}
+        run: exit 1
+  lint:
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-      - name: "Use Node.js ${{ matrix.node-version }}"
-        uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6.1.0
+      - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6.1.0
         with:
-          node-version: "${{ matrix.node-version }}"
+          node-version-file: .nvmrc
           cache: npm
       - run: npm clean-install
       - run: npm run lint
