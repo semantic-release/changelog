@@ -6,7 +6,8 @@
   "author": "Pierre Vanduynslager (https://github.com/pvdlg)",
   "ava": {
     "files": [
-      "test/**/*.test.js"
+      "test/**/*.test.js",
+      "!test/integration.test.js"
     ]
   },
   "bugs": {
