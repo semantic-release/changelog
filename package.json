@@ -74,7 +74,8 @@
     "lint:publish": "publint --strict",
     "semantic-release": "semantic-release",
     "test": "npm-run-all --print-label --parallel lint:* --parallel test:*",
-    "test:all": "c8 ava -v"
+    "test:unit": "c8 ava --verbose",
+    "test:integration": "ava --verbose test/integration.test.js"
   },
   "c8": {
     "include": [
