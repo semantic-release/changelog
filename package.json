@@ -89,6 +89,14 @@
     ],
     "all": true
   },
+  "lockfile-lint": {
+    "path": "package-lock.json",
+    "type": "npm",
+    "validate-https": true,
+    "allowed-hosts": [
+      "npm"
+    ]
+  },
   "renovate": {
     "extends": [
       "github>semantic-release/.github:renovate-config"
