@@ -2,10 +2,12 @@
   "name": "@semantic-release/changelog",
   "description": "semantic-release plugin to create or update a changelog file",
   "version": "0.0.0-development",
+  "type": "module",
   "author": "Pierre Vanduynslager (https://github.com/pvdlg)",
   "ava": {
     "files": [
-      "test/**/*.test.js"
+      "test/**/*.test.js",
+      "!test/integration.test.js"
     ]
   },
   "bugs": {
@@ -16,23 +18,26 @@
     "Gregor Martynus (https://twitter.com/gr2m)"
   ],
   "dependencies": {
-    "@semantic-release/error": "^3.0.0",
-    "aggregate-error": "^3.0.0",
-    "fs-extra": "^11.0.0",
-    "lodash": "^4.17.4"
+    "@semantic-release/error": "^4.0.0",
+    "aggregate-error": "^5.0.0",
+    "lodash-es": "^4.17.21"
   },
   "devDependencies": {
-    "ava": "5.1.0",
-    "clear-module": "4.1.2",
-    "nyc": "17.0.0",
-    "semantic-release": "21.1.2",
-    "sinon": "18.0.1",
-    "tempy": "1.0.1",
-    "xo": "0.39.1"
+    "ava": "6.2.0",
+    "c8": "10.1.3",
+    "lockfile-lint": "^5.0.0",
+    "ls-engines": "^0.9.4",
+    "npm-run-all": "^4.1.5",
+    "prettier": "3.5.3",
+    "publint": "^0.3.18",
+    "semantic-release": "24.2.1",
+    "sinon": "19.0.2",
+    "tempy": "3.1.0"
   },
   "engines": {
-    "node": ">=14.17"
+    "node": "^22.14.0 || >= 24.10.0"
   },
+  "exports": "./index.js",
   "files": [
     "lib",
     "index.js"
@@ -46,21 +51,8 @@
     "version"
   ],
   "license": "MIT",
-  "main": "index.js",
-  "nyc": {
-    "include": [
-      "lib/**/*.js",
-      "index.js"
-    ],
-    "reporter": [
-      "json",
-      "text",
-      "html"
-    ],
-    "all": true
-  },
   "peerDependencies": {
-    "semantic-release": ">=18.0.0"
+    "semantic-release": ">=20.1.0"
   },
   "prettier": {
     "printWidth": 120,
@@ -75,19 +67,36 @@
     "url": "https://github.com/semantic-release/changelog.git"
   },
   "scripts": {
-    "lint": "xo",
-    "pretest": "npm run lint",
+    "lint": "prettier --check \"{lib,test}/**/*.{js,json,ts}\" \"*.{md,json,js}\" \".github/**/*.yml\"",
+    "lint:prettier": "prettier --check \"{lib,test}/**/*.{js,json,ts}\" \"*.{md,json,js}\" \".github/**/*.yml\"",
+    "lint:prettier:fix": "prettier --write \"*.{js,json,md}\" \".github/**/*.{md,yml}\" \"{bin,lib,test}/**/*.js\"",
+    "lint:lockfile": "lockfile-lint",
+    "lint:engines": "ls-engines",
+    "lint:publish": "publint --strict",
     "semantic-release": "semantic-release",
-    "test": "nyc ava -v",
-    "test:ci": "nyc ava -v"
+    "test": "npm-run-all --print-label --parallel lint:* --parallel test:*",
+    "test:unit": "c8 ava --verbose",
+    "test:integration": "ava --verbose test/integration.test.js"
   },
-  "xo": {
-    "prettier": true,
-    "space": true,
-    "rules": {
-      "unicorn/no-array-reduce": "off",
-      "unicorn/string-content": "off"
-    }
+  "c8": {
+    "include": [
+      "lib/**/*.js",
+      "index.js"
+    ],
+    "reporter": [
+      "json",
+      "text",
+      "html"
+    ],
+    "all": true
+  },
+  "lockfile-lint": {
+    "path": "package-lock.json",
+    "type": "npm",
+    "validate-https": true,
+    "allowed-hosts": [
+      "npm"
+    ]
   },
   "renovate": {
     "extends": [
