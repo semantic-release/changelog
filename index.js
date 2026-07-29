@@ -4,8 +4,6 @@ import { defaultTo, castArray } from "lodash-es";
 import verifyChangelog from "./lib/verify.js";
 import prepareChangelog from "./lib/prepare.js";
 
-let verified;
-
 export async function verifyConditions(pluginConfig, context) {
   const { options } = context;
   // If the Changelog prepare plugin is used and has `changelogFile` configured, validate them now in order to prevent any release if the configuration is wrong
@@ -17,13 +15,13 @@ export async function verifyConditions(pluginConfig, context) {
   }
 
   await verifyChangelog(pluginConfig);
-  verified = true;
+  pluginConfig.verified = true;
 }
 
 export async function prepare(pluginConfig, context) {
-  if (!verified) {
+  if (!pluginConfig.verified) {
     await verifyChangelog(pluginConfig);
-    verified = true;
+    pluginConfig.verified = true;
   }
 
   await prepareChangelog(pluginConfig, context);
