@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "ava": "8.0.1",
-    "c8": "10.1.3",
+    "c8": "12.0.0",
     "lockfile-lint": "5.0.0",
     "ls-engines": "0.10.1",
     "npm-run-all2": "5.0.2",
