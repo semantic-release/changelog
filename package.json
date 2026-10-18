@@ -23,7 +23,7 @@
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
-    "ava": "8.0.1",
+    "ava": "8.0.2",
     "c8": "12.0.0",
     "lockfile-lint": "5.1.0",
     "ls-engines": "0.10.1",
